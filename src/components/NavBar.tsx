@@ -3,13 +3,17 @@ import { Icon } from "@iconify/react";
 import { Menubar, MenubarContent, MenubarGroup, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar";
 import Link from "next/link";
 import { usePersistedState } from "@/hooks/usePersistedState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { CommandDialog } from "./ui/command";
+import Search from "./Search";
 
 export function NavBar() {
     const [theme, setTheme] = usePersistedState("theme", "light")
     useEffect(() => {
         document.documentElement.classList.toggle("dark", theme === "dark")
     }, [theme])
+
+    const [search_open, set_search_open] = useState(false)
     return (
         <div className="fixed flex flex-row flex-nowrap justify-center items-start w-auto overflow-hidden rounded-md bg-background">
             <Menubar>
@@ -38,7 +42,7 @@ export function NavBar() {
                     </MenubarTrigger>
                 </MenubarMenu>
                 <MenubarMenu>
-                    <MenubarTrigger onClick={() => typeof setTheme === 'function' && setTheme((t: string) => 
+                    <MenubarTrigger onClick={() => typeof setTheme === 'function' && setTheme((t: string) =>
                         t === "light" ? "dark" : "light"
                     )}>
                         <Icon icon={theme === "light" ? "lucide:moon" : "lucide:sun"}></Icon>
@@ -63,7 +67,7 @@ export function NavBar() {
                     </MenubarContent>
                 </MenubarMenu>
                 <MenubarMenu>
-                    <MenubarTrigger>
+                    <MenubarTrigger onClick={() => set_search_open(true)}>
                         <Icon icon="lucide:search"></Icon>
                     </MenubarTrigger>
                 </MenubarMenu>
@@ -73,6 +77,10 @@ export function NavBar() {
                     </MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
+
+            <CommandDialog open={search_open} onOpenChange={set_search_open}>
+                <Search></Search>
+            </CommandDialog>
         </div>
 
     )

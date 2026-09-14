@@ -1,48 +1,37 @@
 
-import { ApiResp, HomeData } from "@/lib/req";
-import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { toast } from "./ui/toast";
 import { Article } from "@/lib/article";
+import { get_home_data } from "@/lib/fetch";
 import Empty from "./Empty";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Icon } from "@iconify/react";
 
 export default async function ArticleListItem() {
-    const res = await fetch("https://axum.fufu.moe/home", {
-        next: {
-            revalidate: 300
-        },
-        signal: AbortSignal.timeout(10000)
-    })
-    if (!res.ok)
-        toast.add({
-            type: "error",
-            priority: "high",
-            description: "Http ${res.status}"
-        })
-    const body: ApiResp<HomeData> = await res.json()
-    if (body.code !== 0)
-        toast.add({
-            type: "error",
-            priority: "high",
-            description: "接口错误 ${body.code}: ${body.msg}"
-        })
+    const home_data = await get_home_data()
+    const { arr } = home_data.article_list
 
-    const { arr } = body.data.article_list
     if (arr.length === 0) {
         return (
             <Empty></Empty>
         )
     }
     return (
-        <div>
+        <div className="w-[61.8%] py-2">
             {arr.map((article: Article) => (
-                <Card className="w-full max-w-sm">
+                <Card key={article.id}>
                     <CardHeader>
                         <CardTitle>{article.title}</CardTitle>
                         <CardDescription>{article.synopsis}</CardDescription>
-                        <CardAction>
-                            <span>{article.likes}</span>
-                        </CardAction>
                     </CardHeader>
+                    <CardContent className="flex gap-2">
+                            <span className="flex gap-1 items-center">
+                                <Icon icon="bxs:like" className="inline"></Icon>
+                                {article.likes}
+                            </span>
+                            <span className="flex gap-1 items-center">
+                                <Icon icon="carbon:view-filled" className="inline"></Icon>
+                                {article.views}
+                            </span>
+                    </CardContent>
                 </Card>
             ))}
         </div>
