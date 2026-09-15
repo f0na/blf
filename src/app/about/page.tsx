@@ -64,6 +64,9 @@ export default async function AboutPage() {
                 ) : (
                     <Empty></Empty>
                 )}
+                <div>now: {Date.now()}<br/></div>
+                <div>create: {about_data.site.create_at}<br/></div>
+                <div>timestamp: {new Date(about_data.site.create_at!).getTime()}<br/></div>
             </main>
             <footer className="flex">
                 <Footer site={about_data.site}></Footer>

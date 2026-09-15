@@ -38,7 +38,6 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
 
 export function SiteUptime({ create_time }: { create_time: Date }) {
     const { days, hours, minutes, seconds } = useElapsedTime(create_time);
-
     return (
         <Card className="w-fit overflow-hidden border-border/60 bg-gradient-to-br from-background to-muted/30 shadow-sm">
             <CardContent className="flex items-center gap-5 px-5 py-4">
