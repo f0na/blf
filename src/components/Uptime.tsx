@@ -8,11 +8,11 @@ function useElapsedTime(from: Date) {
     const [elapsed, setElapsed] = useState(0);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setElapsed(Date.now() - from.getTime());
-        }, 1000);
-        return () => clearInterval(timer);
-    }, [from]);
+        const tick = () => setElapsed(Date.now() - from.getTime())
+        tick()
+        const timer = setInterval(tick, 1000)
+        return () => clearInterval(timer)
+    }, [from])
 
     const totalSeconds = Math.floor(elapsed / 1000);
     const days = Math.floor(totalSeconds / 86400);
