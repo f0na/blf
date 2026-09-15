@@ -4,6 +4,8 @@ export interface Site {
     banner?: string
     icp?: string
     copyright?: string
+    about?: string
+    create_at?: string
 }
 
 export enum SocialType {

@@ -16,8 +16,13 @@ interface Pager<T> {
 
 interface HomeData {
     site: Site
-    social: Social
+    social: Social[]
     article_list: Pager<ArticleList>
+}
+
+interface AboutData {
+    site: Site
+    social: Social[]
 }
 
 interface SearchArticle {
@@ -37,5 +42,6 @@ export type {
     ApiResp,
     Pager,
     HomeData,
-    SearchArticle
+    SearchArticle,
+    AboutData
 }
