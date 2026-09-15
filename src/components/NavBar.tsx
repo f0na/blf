@@ -6,6 +6,7 @@ import { usePersistedState } from "@/hooks/usePersistedState";
 import { useEffect, useState } from "react";
 import { CommandDialog } from "./ui/command";
 import Search from "./Search";
+import { usePathname } from "next/navigation";
 
 export function NavBar() {
     const [theme, setTheme] = usePersistedState("theme", "light")
@@ -14,6 +15,11 @@ export function NavBar() {
     }, [theme])
 
     const [search_open, set_search_open] = useState(false)
+    const pathname = usePathname()
+
+    useEffect(() => {
+        set_search_open(false)
+    }, [pathname])
     
     return (
         <div className="fixed flex flex-row flex-nowrap justify-center items-start w-auto overflow-hidden rounded-md bg-background">
