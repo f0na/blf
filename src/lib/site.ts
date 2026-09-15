@@ -5,7 +5,7 @@ export interface Site {
     icp?: string
     copyright?: string
     about?: string
-    create_at?: string
+    create_at?: number
 }
 
 export enum SocialType {

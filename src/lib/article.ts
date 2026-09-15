@@ -7,6 +7,6 @@ export interface ArticleList {
     likes?: number
     views?: number
     tags: string[]
-    create_at: string
-    update_at?: string
+    create_at: number
+    update_at?: number
 }

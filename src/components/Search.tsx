@@ -44,7 +44,7 @@ export default function Search() {
                                 {r.tags.map((t) => (
                                     <Badge key={t} className="rounded-md">{t}</Badge>
                                 ))}
-                                {r.create_at}<br />
+                                {new Date(r.create_at).toLocaleDateString("zh-CN")}<br />
                             </CommandItem>
                         ))}
                     </CommandGroup>

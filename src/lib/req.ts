@@ -32,9 +32,9 @@ interface SearchArticle {
     cover?: string
     synopsis?: string
     /// 时间戳 yyyy-MM-dd HH:mm:ss
-    create_at: string
+    create_at: number
     /// 时间戳 yyyy-MM-dd HH:mm:ss
-    update_at?: string
+    update_at?: number
     tags: string[]
 }
 

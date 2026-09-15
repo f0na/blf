@@ -42,7 +42,7 @@ export async function get_about_data(): Promise<AboutData> {
 
 export async function search(q: string, page?: number, page_size?: number): Promise<Pager<SearchArticle>> {
     const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&${page}&${page_size}`, {
-        signal: AbortSignal.timeout(10000),
+        signal: AbortSignal.timeout(30000),
     });
 
     if (!res.ok) {

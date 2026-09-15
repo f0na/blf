@@ -38,12 +38,12 @@ export default async function ArticleListItem({ pager }: { pager: Pager<ArticleL
                             <div className="flex flex-row gap-2">
                                 <span className="flex gap-1 items-center">
                                     <Icon icon="fluent:compose-12-filled" className="inline"></Icon>
-                                    {article.create_at}
+                                    {new Date(article.create_at).toLocaleDateString("zh-CN")}
                                 </span>
                                 {article.update_at ? (
                                     <span className="flex gap-1 items-center">
                                         <Icon icon="icon-park-twotone:update-rotation" className="inline"></Icon>
-                                        {article.update_at}
+                                        {new Date(article.update_at).toLocaleDateString("zh-CN")}
                                     </span>
                                 ) : null}
                             </div>
