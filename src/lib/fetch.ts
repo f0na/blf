@@ -4,7 +4,7 @@ export async function get_home_data(): Promise<HomeData> {
     const res = await fetch("https://axum.fufu.moe/home", {
         cache: "force-cache",
         next: { revalidate: 300 },
-        signal: AbortSignal.timeout(10000),
+        signal: AbortSignal.timeout(30000),
     });
 
     if (!res.ok) {
@@ -24,7 +24,7 @@ export async function get_about_data(): Promise<AboutData> {
     const res = await fetch("https://axum.fufu.moe/about", {
         cache: "force-cache",
         next: { revalidate: 300 },
-        signal: AbortSignal.timeout(10000),
+        signal: AbortSignal.timeout(30000),
     });
 
     if (!res.ok) {
