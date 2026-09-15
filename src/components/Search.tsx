@@ -29,7 +29,7 @@ export default function Search() {
 
     return (
         <div className="flex rounded-sm">
-            <Command>
+            <Command shouldFilter={false}>
                 <CommandInput
                     value={q.trim()}
                     onValueChange={(e) => set_q(e)}
