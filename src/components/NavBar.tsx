@@ -14,6 +14,7 @@ export function NavBar() {
     }, [theme])
 
     const [search_open, set_search_open] = useState(false)
+    
     return (
         <div className="fixed flex flex-row flex-nowrap justify-center items-start w-auto overflow-hidden rounded-md bg-background">
             <Menubar>
