@@ -1,4 +1,4 @@
-import { ArticleList } from "./article"
+import { Article, ArticleList } from "./article"
 import { Site, Social } from "./site"
 
 interface ApiResp<T> {
@@ -25,6 +25,12 @@ interface AboutData {
     social: Social[]
 }
 
+interface ArticleData {
+    site: Site
+    social: Social[]
+    article: Article
+}
+
 interface SearchArticle {
     id: string
     title: string
@@ -43,5 +49,6 @@ export type {
     Pager,
     HomeData,
     SearchArticle,
-    AboutData
+    AboutData,
+    ArticleData
 }
