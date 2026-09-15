@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Icon } from "@iconify/react";
 
 function useElapsedTime(from: Date) {
-    const [elapsed, setElapsed] = useState(() => Date.now() - from.getTime());
+    const [elapsed, setElapsed] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
