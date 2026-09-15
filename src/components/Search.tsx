@@ -1,8 +1,9 @@
 'use client'
 import { search } from "@/lib/fetch";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "./ui/command";
+import { SearchArticle } from "@/lib/req";
 import { useEffect, useState } from "react";
-import { Pager, SearchArticle } from "@/lib/req";
+import { Badge } from "./ui/badge";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "./ui/command";
 
 export default function Search() {
     const [q, set_q] = useState("")
@@ -16,16 +17,12 @@ export default function Search() {
         }
 
         const timer = setTimeout(async () => {
-            try {
-                const pager_res = await search(q)
-                set_res(pager_res.arr)
-            } catch {
-
-            }
+            const pager_res = await search(kw)
+            set_res(pager_res.arr)
         }, 500)
 
         return () => clearTimeout(timer)
-    }, [q]) 
+    }, [q])
 
     return (
         <div className="flex rounded-sm">
@@ -41,7 +38,14 @@ export default function Search() {
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading="Result">
                         {res.map((r) => (
-                        <CommandItem>{r.title}</CommandItem>
+                            <CommandItem key={r.id}>
+                                <div>{r.title}</div>
+                                <div className="text-green-700">{r.synopsis}</div>
+                                {r.tags.map((t) => (
+                                    <Badge key={t} className="rounded-md">{t}</Badge>
+                                ))}
+                                {r.create_at}<br />
+                            </CommandItem>
                         ))}
                     </CommandGroup>
                 </CommandList>

@@ -21,7 +21,7 @@ export async function get_home_data(): Promise<HomeData> {
 }
 
 export async function search(q: string, page?: number, page_size?: number): Promise<Pager<SearchArticle>> {
-    const res = await fetch(`https://axum.fufu.moe/search?q=${encodeURIComponent(q)}&${page}&${page_size}`, {
+    const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&${page}&${page_size}`, {
         signal: AbortSignal.timeout(10000),
     });
 

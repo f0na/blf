@@ -21,16 +21,16 @@ interface HomeData {
 }
 
 interface SearchArticle {
-    id: String
-    title: String
-    slug: String
-    cover?: String
-    synopsis?: String
+    id: string
+    title: string
+    slug: string
+    cover?: string
+    synopsis?: string
     /// 时间戳 yyyy-MM-dd HH:mm:ss
-    create_at: String
+    create_at: string
     /// 时间戳 yyyy-MM-dd HH:mm:ss
-    update_at?: String
-    tags: String[]
+    update_at?: string
+    tags: string[]
 }
 
 export type {

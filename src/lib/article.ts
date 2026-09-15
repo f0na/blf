@@ -6,6 +6,7 @@ export interface Article {
     cover?: string
     likes?: number
     views?: number
+    tags: string[]
     create_at: string
     update_at?: string
 }
