@@ -1,4 +1,4 @@
-import { Article } from "./article"
+import { ArticleList } from "./article"
 import { Site, Social } from "./site"
 
 interface ApiResp<T> {
@@ -17,7 +17,7 @@ interface Pager<T> {
 interface HomeData {
     site: Site
     social: Social
-    article_list: Pager<Article>
+    article_list: Pager<ArticleList>
 }
 
 interface SearchArticle {

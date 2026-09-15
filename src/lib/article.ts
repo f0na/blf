@@ -1,4 +1,4 @@
-export interface Article {
+export interface ArticleList {
     id: string
     title: string
     slug: string

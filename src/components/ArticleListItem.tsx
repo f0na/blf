@@ -1,23 +1,21 @@
 
-import { Article } from "@/lib/article";
-import { get_home_data } from "@/lib/fetch";
-import Empty from "./Empty";
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { ArticleList } from "@/lib/article";
+import { Pager } from "@/lib/req";
 import { Icon } from "@iconify/react";
+import Empty from "./Empty";
 import { Badge } from "./ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
-export default async function ArticleListItem() {
-    const home_data = await get_home_data()
-    const { arr } = home_data.article_list
-
+export default async function ArticleListItem({ pager }: { pager: Pager<ArticleList> }) {
+    const arr = pager.arr
     if (arr.length === 0) {
         return (
             <Empty></Empty>
         )
     }
     return (
-        <div className="w-[61.8%] py-2">
-            {arr.map((article: Article) => (
+        <div className="py-2">
+            {arr.map((article: ArticleList) => (
                 <Card key={article.id}
                     className="flex flex-row justify-between items-stretch max-h-[20vh] gap-0 p-2 overflow-hidden">
                     <div className="flex flex-col flex-1 justify-between">
